@@ -1,10 +1,13 @@
-import Home from './pages/home'
+import Intro from './components/intro';
 import './App.css';
+import { Stack } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+      <Stack spacing={3}>
+        <Intro/>
+      </Stack>
     </div>
   );
 }
