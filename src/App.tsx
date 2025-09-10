@@ -6,7 +6,7 @@ import { Stack } from '@mui/material';
 function App() {
   return (
     <div className="App">
-      <Stack spacing={3}>
+      <Stack>
         <Intro/>
         <WorkHistory/>
       </Stack>
