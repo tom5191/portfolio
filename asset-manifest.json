@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.419ef3f8.css",
-    "main.js": "/static/js/main.3e145e4f.js",
-    "static/media/me3.jpg": "/static/media/me3.eb14cb0af39e948d7989.jpg",
-    "static/media/footer_lodyas.png": "/static/media/footer_lodyas.be8d2259c09a3d1fe461.png",
-    "static/media/bizlibrary.png": "/static/media/bizlibrary.bc617c1f426c65f08a08.png",
-    "static/media/curate-logo-blue.svg": "/static/media/curate-logo-blue.12ef298de0e0ac05090422bdd5811025.svg",
-    "index.html": "/index.html",
-    "main.419ef3f8.css.map": "/static/css/main.419ef3f8.css.map",
-    "main.3e145e4f.js.map": "/static/js/main.3e145e4f.js.map"
+    "main.css": "./static/css/main.18a4b52e.css",
+    "main.js": "./static/js/main.edb5c140.js",
+    "static/media/me3.jpg": "./static/media/me3.eb14cb0af39e948d7989.jpg",
+    "static/media/footer_lodyas.png": "./static/media/footer_lodyas.be8d2259c09a3d1fe461.png",
+    "static/media/bizlibrary.png": "./static/media/bizlibrary.bc617c1f426c65f08a08.png",
+    "static/media/curate-logo-blue.svg": "./static/media/curate-logo-blue.12ef298de0e0ac05090422bdd5811025.svg",
+    "index.html": "./index.html",
+    "main.18a4b52e.css.map": "./static/css/main.18a4b52e.css.map",
+    "main.edb5c140.js.map": "./static/js/main.edb5c140.js.map"
   },
   "entrypoints": [
-    "static/css/main.419ef3f8.css",
-    "static/js/main.3e145e4f.js"
+    "static/css/main.18a4b52e.css",
+    "static/js/main.edb5c140.js"
   ]
 }
