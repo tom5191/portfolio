@@ -1,55 +1,29 @@
 import * as React from 'react'
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box'
-
-
-import FastfoodIcon from '@mui/icons-material/Fastfood';
+import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 
-import CURATE_LOGO from './../assets/curate-logo-blue.svg';
-import BIZLIBRARY_LOGO from './../assets/bizlibrary.png';
-import PINGPILOT_LOGO from './../assets/pingpilot.jpg';
-import ZIPLINE_LOGO from './../assets/Zipline_20Logo.png';
+import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
+import ArchitectureOutlinedIcon from '@mui/icons-material/ArchitectureOutlined';
+import DeveloperModeOutlinedIcon from '@mui/icons-material/DeveloperModeOutlined';
+import ReorderOutlinedIcon from '@mui/icons-material/ReorderOutlined';
+import TocOutlinedIcon from '@mui/icons-material/TocOutlined';
+import ComputerOutlinedIcon from '@mui/icons-material/ComputerOutlined';
+import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
 
-const jobs = [{
-  companyName: 'Curate',
-  position: 'Senior Software Engineer',
-  logo: CURATE_LOGO,
-  startDate: '05/2021',
-  endDate: '08/2025'
-},
-{
-  companyName: 'BizLibrary',
-  position: 'Javascript Developer',
-  logo: BIZLIBRARY_LOGO,
-  startDate: '11/2019',
-  endDate: '05/2021'
-},
-{
-  companyName: 'Ping Pilot',
-  position: 'Software Engineer',
-  logo: PINGPILOT_LOGO,
-  startDate: '04/2017',
-  endDate: '07/2019'
-},
-{
-  companyName: 'Zipline Labs',
-  position: 'Javascript',
-  logo: ZIPLINE_LOGO,
-  startDate: '07/2014',
-  endDate: '11/2016'
-}
-]
+
+import { jobs } from '../resume';
+
 
 interface Props {
   companyName: string,
@@ -57,29 +31,70 @@ interface Props {
   logo: string,
   startDate: string,
   endDate: string,
-  index: number,
-  responsibilities?: string[]
+  responsibilities: string[]
 }
 
 const DEFAULT_JOB = {
   companyName: '',
   position: '',
-  logo:'',
+  logo: '',
   startDate: '',
   endDate: '',
-  index: 0,
+  responsibilities: ['']
 }
+
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 800,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
+  color: "#000",
+  borderRadius: 5,
   p: 4,
 };
+
+const skillIconStyle = { height: 35, width: 35, marginRight: 2 };
+
+const centerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center'
+};
+
+const leftAreaExpertise = [{
+  icon: <ReorderOutlinedIcon sx={skillIconStyle} />,
+  title: 'Main Tech Stack',
+  subtitle: 'Javascript/Typescript, Node.js, AWS, SQL/NoSQL, Git, NPM'
+},
+{
+  icon: <DeveloperModeOutlinedIcon sx={skillIconStyle} />,
+  title: 'Backend Development',
+  subtitle: 'Serverless, Microservices, RESTful API, GraphQL API, etc'
+},
+{
+  icon: <ArchitectureOutlinedIcon sx={skillIconStyle} />,
+  title: 'Architecture Development',
+  subtitle: 'Microservice, Event Driven, Database (SQL/NoSQL)'
+}]
+
+const rightAreaExpertise = [{
+  icon: <TocOutlinedIcon sx={skillIconStyle} />,
+  title: 'Secondary Tech Stack',
+  subtitle: 'Python, C#, React, Vue.js, MUI'
+},
+{
+  icon: <ComputerOutlinedIcon sx={skillIconStyle} />,
+  title: 'Frontend Development',
+  subtitle: 'Vue.js, React, MUI'
+},
+{
+  icon: <IntegrationInstructionsOutlinedIcon sx={skillIconStyle} />,
+  title: 'Third Party Integrations',
+  subtitle: 'Stripe, Twilio, Salesforce, Marketo, Hubspot, and more'
+}]
 
 export default function Resume() {
   const [open, setOpen] = React.useState(false);
@@ -95,84 +110,145 @@ export default function Resume() {
   function JobModal() {
     return (
       <div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-           {job.position}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {job.companyName}
-          </Typography>
-        </Box>
-      </Modal>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Grid container>
+              <Grid size={6} sx={{ alignContent: 'center' }}>
+                <Typography id="modal-modal-description" variant="subtitle1">
+                  Position
+                </Typography>
+                <Typography id="modal-modal-title" variant="h4" component="h2">
+                  {job.position}
+                </Typography>
+              </Grid>
+              <Grid size={3}></Grid>
+              <Grid size={3} sx={{ alignItems: 'center' }}>
+                <Typography id="modal-modal-description" variant="subtitle1">
+                  Company
+                </Typography>
+                <Typography id="modal-modal-description" variant="h4" sx={{ fontSize: "1.75rem" }}>
+                  {job.companyName}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Divider />
+            <Stack spacing={1} sx={{ marginTop: "15px", overflow: "hidden" }}>
+              <Typography id="modal-modal-description" variant="h6">
+                Responsibilities
+              </Typography>
+              <List>
+
+                {
+                  job.responsibilities.map((res: string, index: number) => {
+                    return (
+                      <ListItem key={index}>
+                        <ListItemAvatar><AssignmentTurnedInOutlinedIcon /></ListItemAvatar>
+                        <ListItemText primary={res} />
+                      </ListItem>
+                    )
+                  })
+                }
+              </List>
+
+            </Stack>
+          </Box>
+        </Modal>
       </div>
     );
   }
 
-  function Item(job: Props) {
-    const {companyName, position, logo, startDate, endDate, index} = job;
-    const isEven = index % 2 === 0;
-    const float = isEven ? 'left' : 'right';
-    const logoRadius = companyName === 'BizLibrary' ? 0 : 50
+  function AreaOfExpertise({ icon, title, subtitle }: { icon: any, title: string, subtitle: string }) {
     return (
-        <TimelineItem className="jobCard" onClick={() => handleJobOnClick(job)}>
-          <TimelineSeparator>
-            <TimelineConnector />
-            <TimelineDot>
-              <FastfoodIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Card sx={{
-                width: 300, 
-                borderRadius:5, 
-                backgroundColor:"rgba(234, 240, 240, 0.75)", 
-                textAlign:"center", 
-                float:float
-                }}>
-              <CardMedia
-                component="img"
-                sx={{ width: 151, display:"flex", margin: 'auto', padding: 2, borderRadius:logoRadius }}
-                image={logo}
-                alt={`${companyName} logo`}
-              />
-              <CardContent>
-                <Typography variant="h5" component="span">
-                  {position}
-                </Typography>
-                <Typography variant='h6'>{companyName}</Typography>
-                <Typography>{startDate}-{endDate}</Typography>
-              </CardContent>
-            </Card>
-          </TimelineContent>
-        </TimelineItem>
+      <Box sx={{ width: "500px", height: 100 }}>
+        <Stack>
+          <Stack direction="row">
+            {icon}
+            <Typography variant='h4'>{title}</Typography>
+          </Stack>
+          <Typography variant='subtitle1' sx={{ marginLeft: 7, fontWeight: 200 }}>{subtitle}</Typography>
+        </Stack>
+      </Box>
     );
+  }
+
+  function JobLayout(job: Props) {
+    return (
+      <Box>
+        <Card
+          onClick={() => handleJobOnClick(job)}
+          sx={{
+            width: 275,
+            height: 300,
+            textAlign: "center",
+            cursor: 'pointer',
+            '&:hover': {
+              border: "1px solid rgba(255, 255, 255, 0.6)",
+            },
+            background: "rgba(255, 255, 255, 0.2)",
+            borderRadius: "16px",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(255, 255, 255, 0.3)",
+            color: "rgba(212, 212, 212, 1)"
+          }}>
+          <CardMedia
+            component="img"
+            sx={{ width: 151, height: 151, display: "flex", margin: 'auto', padding: 2, objectFit: 'contain', borderRadius: 100 }}
+            image={job.logo}
+            alt={`${job.companyName} logo`}
+          />
+          <CardContent>
+            <Typography variant="h6" component="span" sx={{ fontWeight: 500 }}>
+              {job.position}
+            </Typography>
+            <Typography variant='subtitle1' sx={{ fontWeight: 400 }}>{job.companyName}</Typography>
+            <Typography sx={{ fontWeight: 200 }}>{job.startDate} - {job.endDate}</Typography>
+          </CardContent>
+        </Card>
+      </Box>
+    )
   }
 
   return (
-    <div className="sectionContainer workHistory">
-      <div className="appContainer">
-        <Timeline position="alternate">
-          {jobs.map((job, index) => (
-            <Item 
-              key={index}
-              companyName={job.companyName} 
-              position={job.position} 
-              logo={job.logo} 
-              startDate={job.startDate} 
-              endDate={job.endDate}
-              index={index}
-            />
-          ))}
-        </Timeline>
-         <JobModal/>
-      </div>
-    </div>
+    <Box className="sectionContainer workHistory">
+      <Box className="appContainer">
+        {/* <Typography variant='h1' sx={{ textAlign: 'center' }}>The things I've done</Typography> */}
+        <Grid container>
+          <Grid size={12}>
+            <Typography className="ibm-plex-serif-medium" variant='h4' sx={{ textAlign: 'center' }}>Areas of Expertise</Typography>
+            <Typography variant='subtitle1' sx={{ textAlign: 'center', fontWeight: 200 }}>
+              A backend focused fullstack engineer working with a comprehensive list of technologies and services.
+            </Typography>
+          </Grid>
+          <Grid container size={12} sx={{ padding: 6, marginTop: 4 }}>
+            <Grid className="center_these" size={6} sx={{ ...centerStyle }}>
+              {leftAreaExpertise.map((lae, index) => {
+                return <AreaOfExpertise key={index} {...lae}></AreaOfExpertise>
+              })}
+            </Grid>
+            <Grid className="center_these" size={6} sx={{ ...centerStyle }}>
+              {rightAreaExpertise.map((lae, index) => {
+                return <AreaOfExpertise key={index} {...lae}></AreaOfExpertise>
+              })}
+            </Grid>
+          </Grid>
+          <Box sx={{ padding: 3 }}>
+            <Typography variant='h3' sx={{ textAlign: 'center', marginTop: 2 }}> History</Typography>
+            <Typography variant='subtitle1' sx={{ textAlign: 'center', marginBottom: 2, fontWeight: 200 }}>a glimpse at who I've worked with.</Typography>
+            <Stack direction="row" spacing={2}>
+              {
+                jobs.map((job, index) => { return <JobLayout key={index} {...job}></JobLayout> })
+              }
+            </Stack>
+          </Box>
+        </Grid>
+        <JobModal />
+      </Box>
+    </Box>
   );
 }
